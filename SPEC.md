@@ -235,6 +235,7 @@ Metadata tag fields:
 
     1. **Type1 (3-bits)** - Abstract type of the tag. Groups the tags into
        8 categories that facilitate bitmasked lookups.
+       #MISSING list the (7) possible Type1 values (0b001 .. 0b111)
 
     2. **Chunk (8-bits)** - Chunk field used for various purposes by the different
        abstract types.  type1+chunk+id form a unique identifier for each tag in the
@@ -244,6 +245,7 @@ Metadata tag fields:
    block gets a unique id which is used to associate tags with that file. The
    special value `0x3ff` is used for any tags that are not associated with a
    file, such as directory and global metadata.
+   #MISSING - does this mean that (sub)directories do not have a block-unique id, but all contain 0x3ff?
 
 4. **Length (10-bits)** - Length of the data in bytes. The special value
    `0x3ff` indicates that this tag has been deleted.
@@ -280,6 +282,7 @@ UTF8 in the future).
 
 The chunk field in this tag indicates an 8-bit file type which can be one of
 the following.
+#MISSING field values
 
 Currently, the name tag must precede any other tags associated with the id and
 can not be reassigned without deleting the file.
@@ -314,6 +317,7 @@ How each file is stored depends on its struct tag, which is described below.
 #### `0x002` LFS_TYPE_DIR
 
 Initializes the id + name as a directory.
+#MISSING - does id identify the directory or 0x3ff as indicated [above, pt 3.](#Metadata-tags) 
 
 Directories in littlefs are stored on disk as a linked-list of metadata pairs,
 each pair containing any number of files in alphabetical order. A pointer to
@@ -411,6 +415,7 @@ Associates the id with an on-disk data structure.
 
 The exact layout of the data depends on the data structure type stored in the
 chunk field and can be one of the following.
+#MISSING field values
 
 Any type of struct supersedes all other structs associated with the id. For
 example, appending a ctz-struct replaces an inline-struct on the same file.
