@@ -237,13 +237,13 @@ Metadata tag fields:
        8 categories that facilitate bitmasked lookups.
        > **Warning**  
        > list the possible Type1 values and the group description.
-       > * 0x0xx NAME (REG, DIR, SUPERBLOCK)
+       > * 0x0xx NAME (covers REG, DIR, ❓SUPERBLOCK)
        > * 0x1xx (none)
-       > * 0x2xx STRUCT (DIRSTRUCT, INLINESTRUCT, CTZSTRUCT)
+       > * 0x2xx STRUCT (covers DIRSTRUCT, INLINESTRUCT, CTZSTRUCT)
        > * 0x3xx USERATTR
        > * 0x4xx CREATE, DELETE
        > * 0x5xx CRC
-       > * 0x6xx TAIL, SOFTTAIL, HARDTAIL
+       > * 0x6xx TAIL (covers SOFTTAIL, HARDTAIL)
        > * 0x7xx GSTATE, MOVESTATE
 
     2. **Chunk (8-bits)** - Chunk field used for various purposes by the different
