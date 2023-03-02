@@ -254,7 +254,7 @@ Metadata tag fields:
    block gets a unique id which is used to associate tags with that file. The
    special value `0x3ff` is used for any tags that are not associated with a
    file, such as directory and global metadata.
-   > **Note**  
+   > **Warning**  
    > does this mean that (sub)directories do not have a block-unique id, but all contain 0x3ff?
 
 4. **Length (10-bits)** - Length of the data in bytes. The special value
@@ -285,7 +285,9 @@ array of files.
 ---
 #### `0x0xx` LFS_TYPE_NAME
 
-Associates the id with a file name and file type.
+> **Warning**  
+> The tag layout of LFS_TYPE_NAME (below) does not match the `0x0ff LFS_TYPE_SUPERBLOCK` layout even though the `0x0xx` pattern
+matches `0x0ff`. But 0x0ff LFS_TYPE_SUPERBLOCK isn't really a `0x0xx` LFS_TYPE_NAME type, right?
 
 The data contains the file name stored as an ASCII string (may be expanded to
 UTF8 in the future).
@@ -328,7 +330,7 @@ How each file is stored depends on its struct tag, which is described below.
 #### `0x002` LFS_TYPE_DIR
 
 Initializes the id + name as a directory.
-> **Note**  
+> **Warning**  
 > does id identify the directory or 0x3ff as indicated [above, pt 3.](#Metadata-tags) 
 
 Directories in littlefs are stored on disk as a linked-list of metadata pairs,
