@@ -236,15 +236,29 @@ Metadata tag fields:
     1. **Type1 (3-bits)** - Abstract type of the tag. Groups the tags into
        8 categories that facilitate bitmasked lookups.
        > **Warning**  
-       > list the possible Type1 values and the group description.
-       > * 0x0xx NAME (covers REG, DIR, ❓SUPERBLOCK)
-       > * 0x1xx (none)
-       > * 0x2xx STRUCT (covers DIRSTRUCT, INLINESTRUCT, CTZSTRUCT)
-       > * 0x3xx USERATTR
-       > * 0x4xx CREATE, DELETE
-       > * 0x5xx CRC
-       > * 0x6xx TAIL (covers SOFTTAIL, HARDTAIL)
-       > * 0x7xx GSTATE, MOVESTATE
+       > List the possible Type1 values and the group description. Values from `lfs.h´ but not in documentation marked with ❓
+       > * 0x000 LFS_TYPE_NAME
+       >   * 0X000 ❓❗LFS_FROM_NOOP (⚠️ clash)
+       >   * 0X001 LFS_TYPE_REG
+       >   * 0X002 LFS_TYPE_DIR
+       >   * ❗0X0FF LFS_TYPE_SUPERBLOCK (is it part of group LFS_TYPE_NAME?)
+       > * 0x100 ❓LFS_TYPE_FROM
+       >   * 0X101 ❓LFS_TYPE_FROM_MOVE
+       >   * 0X102 ❓LFS_TYPE_FROM_USERATTRS
+       > * 0x200 LFS_TYPE_STRUCT
+       >   * 0x200 ❗LFS_TYPE_DIRSTRUCT (⚠️ clash)
+       >   * 0x201 LFS_TYPE_INLINESTRUCT
+       >   * 0x202 LFS_TYPE_CTZSTRUCT
+       > * 0x300 LFS_TYPE_USERATTR
+       > * 0x400 ❓LFS_TYPE_SPLICE
+       >   * 0x401 LFS_TYPE_CREATE
+       >   * 0x4ff LFS_TYPE_DELETE
+       > * 0x500 LFS_TYPE_CRC
+       > * 0x600 ❓LFS_TYPE_TAIL
+       >   * 0x600 ❗LFS_TYPE_SOFTTAIL (⚠️ clash)
+       >   * 0x601 LFS_TYPE_HARDTAIL
+       > * 0x700 ❓LFS_TYPE_GLOBALS (named LFS_TYPE_GSTATE here)
+       >   * 0x7ff LFS_TYPE_MOVESTATE
 
     2. **Chunk (8-bits)** - Chunk field used for various purposes by the different
        abstract types.  type1+chunk+id form a unique identifier for each tag in the
