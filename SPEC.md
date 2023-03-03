@@ -257,7 +257,7 @@ Metadata tag fields:
        > * 0x600 ❓LFS_TYPE_TAIL
        >   * 0x600 ❗LFS_TYPE_SOFTTAIL (⚠️ clash)
        >   * 0x601 LFS_TYPE_HARDTAIL
-       > * 0x700 ❓LFS_TYPE_GLOBALS (named LFS_TYPE_GSTATE here)
+       > * 0x700 ❓LFS_TYPE_GLOBALS (⚠️ named LFS_TYPE_GSTATE here)
        >   * 0x7ff LFS_TYPE_MOVESTATE
 
     2. **Chunk (8-bits)** - Chunk field used for various purposes by the different
@@ -269,10 +269,12 @@ Metadata tag fields:
    special value `0x3ff` is used for any tags that are not associated with a
    file, such as directory and global metadata.
    > **Warning**  
-   > does this mean that (sub)directories do not have a block-unique id, but all contain 0x3ff?
+   > Does this mean that (sub)directories do not have a block-unique id, but all contain 0x3ff?
 
 4. **Length (10-bits)** - Length of the data in bytes. The special value
    `0x3ff` indicates that this tag has been deleted.
+   > **Warning**  
+   > If value is 0x3ff, how is the list traversed, given the length is no longer known for the deleted tag.
 
 ## Metadata types
 
